@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using StellarEditor.ProjectManager;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,22 @@ namespace StellarEditor
         public MainWindow()
         {
             InitializeComponent();
+            Loaded += OnMainWindowLoaded;
+        }
+
+        private void OnMainWindowLoaded(object sender, RoutedEventArgs e)
+        {
+            Loaded -= OnMainWindowLoaded;
+            OpenProjectSelectorDialog();
+        }
+
+        private void OpenProjectSelectorDialog()
+        {
+            var projectSelector = new ProjectSelectorDialog();
+            if (projectSelector.ShowDialog() == false)
+            {
+                Application.Current.Shutdown();
+            }
         }
     }
 }

@@ -1,1 +1,2 @@
 v0.0.1
+Added interface for "Open Project" and "New Project"
